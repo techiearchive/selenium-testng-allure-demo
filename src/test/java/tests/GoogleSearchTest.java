@@ -16,20 +16,19 @@ public class GoogleSearchTest {
     WebDriver driver;
 
 
-@BeforeClass
-public void setup() throws Exception {
-    ChromeOptions options = new ChromeOptions();
-    options.addArguments("--headless");
-    options.addArguments("--no-sandbox");
-    options.addArguments("--disable-dev-shm-usage");
+	@BeforeClass
+	public void setup() throws Exception {
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--headless");
+		options.addArguments("--no-sandbox");
+		options.addArguments("--disable-dev-shm-usage");
 
-    // Optional: set a unique temp user-data-dir
-    Path tempProfile = Files.createTempDirectory("chrome-profile");
-    options.addArguments("--user-data-dir=" + tempProfile.toAbsolutePath().toString());
+		// Optional: set a unique temp user-data-dir
+		Path tempProfile = Files.createTempDirectory("chrome-profile");
+		options.addArguments("--user-data-dir=" + tempProfile.toAbsolutePath().toString());
 
-    driver = new ChromeDriver(options);
-}
-
+		driver = new ChromeDriver(options);
+	}
 
 
     @Test
