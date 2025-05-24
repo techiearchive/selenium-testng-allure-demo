@@ -29,6 +29,10 @@ jobs:
         uses: s4u/setup-maven-action@v1.12.0
         with:
           maven-version: '3.9.6'
+          
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@latest
+
 
       - name: Run Selenium Tests with Maven
         run: mvn clean test
