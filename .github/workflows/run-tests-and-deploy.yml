@@ -36,6 +36,12 @@ jobs:
 
       - name: Run Selenium Tests with Maven
         run: mvn clean test
+        
+      - name: Upload Allure JSON results
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: target/allure-results
 
       - name: Install Allure CLI
         run: |
