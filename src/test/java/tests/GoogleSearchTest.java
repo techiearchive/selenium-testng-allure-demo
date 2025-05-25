@@ -38,7 +38,7 @@ public class GoogleSearchTest {
         searchBox.sendKeys("OpenAI ChatGPT");
         searchBox.submit();
 
-        Assert.assertFalse(driver.getTitle().toLowerCase().contains("openai"));
+        Assert.assertTrue(driver.getTitle().toLowerCase().contains("openai"));
     }
 
     @AfterClass
