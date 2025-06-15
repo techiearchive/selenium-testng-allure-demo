@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  run-selenium-tests:
+  execute-selenium-tests:
     runs-on: ubuntu-latest
 
     steps:
