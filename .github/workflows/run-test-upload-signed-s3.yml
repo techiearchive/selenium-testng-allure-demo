@@ -53,14 +53,10 @@ jobs:
           allure generate allure-results --clean -o allure-report
           ls -l allure-report
       
-      - name: Install AWS CLI
-          run: |
-            sudo apt-get install -y awscli
-
       - name: Upload Allure Report to S3
-        run: |
-          aws s3 sync allure-report s3://${{ secrets.S3_BUCKET_NAME01 }}/latest-report --delete
-          path: allure-report
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --delete
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -68,6 +64,6 @@ jobs:
        
       - name: Generate Signed URL
         run: |
-          url=$(aws s3 presign s3://${{ secrets.S3_BUCKET_NAME01 }}/latest-report/index.html --expires-in 1800)
+          url=$(aws s3 presign s3://${{ secrets.S3_BUCKET_NAME01 }}/index.html --expires-in 1800)
           echo "Signed URL (valid 30 min): $url"   
 
