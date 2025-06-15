@@ -64,6 +64,6 @@ jobs:
        
       - name: Generate Signed URL
         run: |
-          url=$(aws s3 presign s3://${{ secrets.S3_BUCKET_NAME }}/latest-report/index.html --expires-in 1800)
+          url=$(aws s3 presign s3://${{ secrets.S3_BUCKET_NAME01 }}/latest-report/index.html --expires-in 1800)
           echo "Signed URL (valid 30 min): $url"   
 
