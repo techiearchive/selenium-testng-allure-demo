@@ -1,4 +1,4 @@
-name: Run Selenium Tests and Deploy Allure Report
+name: Run Selenium Tests and Deploy Allure Report to github pages
 
 on:
   push:
