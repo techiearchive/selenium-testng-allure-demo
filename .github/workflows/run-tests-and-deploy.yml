@@ -59,34 +59,34 @@ jobs:
           name: allure-report
           path: allure-report
           
-      - name: Upload Allure Report to S3
-        uses: jakejarvis/s3-sync-action@master
+#      - name: Upload Allure Report to S3
+#        uses: jakejarvis/s3-sync-action@master
+#        with:
+#          args: --delete
+#        env:
+#          AWS_S3_BUCKET: ${{ secrets.S3_BUCKET_NAME }}
+#          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          AWS_REGION: ${{ secrets.AWS_REGION }}
+#          SOURCE_DIR: ./allure-report
+
+  deploy-report:
+    needs: run-selenium-tests
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Download Allure report
+        uses: actions/download-artifact@v4
         with:
-          args: --delete
-        env:
-          AWS_S3_BUCKET: ${{ secrets.S3_BUCKET_NAME }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          SOURCE_DIR: ./allure-report
+          name: allure-report
+          path: allure-report
 
-#  deploy-report:
-#    needs: run-selenium-tests
-#    runs-on: ubuntu-latest
-#    if: github.ref == 'refs/heads/main'
-
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v3
-
-#      - name: Download Allure report
-#        uses: actions/download-artifact@v4
-#        with:
-#          name: allure-report
-#          path: allure-report
-
-#      - name: Deploy to GitHub Pages
-#        uses: peaceiris/actions-gh-pages@v3
-#        with:
-#          github_token: ${{ secrets.GITHUB_TOKEN }}
-#          publish_dir: allure-report
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: allure-report
