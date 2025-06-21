@@ -1,2 +1,2 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Sat Jun 21 14:23:31 UTC 2025","Sat Jun 21 14:23:34 UTC 2025","2808","Surefire suite","Surefire test","tests.GoogleSearchTest","tests.GoogleSearchTest","testGoogleSearch","testGoogleSearch",""
+"passed","Sat Jun 21 14:49:52 UTC 2025","Sat Jun 21 14:49:54 UTC 2025","2172","Surefire suite","Surefire test","tests.GoogleSearchTest","tests.GoogleSearchTest","testGoogleSearch","testGoogleSearch",""
